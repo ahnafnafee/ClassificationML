@@ -1,0 +1,207 @@
+\title{CS 383 - Machine Learning}
+\author{
+        Assignment 4 - Classification
+}
+\date{}
+\documentclass[12pt]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Introduction}
+In this assignment you will implement Naive Bayes and Logistic Regression classifiers for the purpose of binary classification.\\
+
+\noindent
+You may \textbf{not} use any functions from an ML library in your code.  And as always your code should work on any dataset that has the same general form as the provided one.
+
+\section*{Grading}
+Although all assignments will be weighed equally in computing your homework grade, below is the grading rubric we will use for this assignment:
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Part 1 (Theory) & 40pts \\
+Part 2 (Naive Bayes)	& 25pts \\
+Part 3 (Logistic Regression)	& 25pts \\
+Report & 10pts\\
+\hline
+\textbf{TOTAL} & 100 pts\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+\section*{Datasets}
+\paragraph{Spambase Dataset  (spambase.data)}
+This dataset consists of 4601 instances of data, each with 57 features and a class label designating if the sample is spam or not.
+The features are \emph{real valued} and are described in much detail here:
+\begin{center}
+  https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.names\\
+\end{center}
+
+\noindent
+Data obtained from:  https://archive.ics.uci.edu/ml/datasets/Spambase
+
+
+\newpage
+\section{Theory}
+\begin{enumerate}
+\item Consider the following set of training examples for an unknown target function:  $(x_1, x_2)\rightarrow y$:
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Y & $x_1$ & $x_2$ & Count\\
+\hline
++ & T & T & 3\\
++ & T & F & 4\\
++ & F & T & 4\\
++ & F & F & 1\\
+- & T & T & 0\\
+- & T & F & 1\\
+- & F & T & 3\\
+- & F & F & 5\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+	\begin{enumerate}
+	\item What is the sample entropy, $H(Y)$ from this training data (using log base 2) (5pts)?
+	\item What are the weighted average entropies of the class labels of the subsets created by variables $x_1$ and $x_2$ (5pts)?
+	\item Draw the decision tree that would be learned by the ID3 algorithm without pruning from this training data.  All leaf nodes should have a single class choice at them.  If necessary use the mean class or, in the case of a tie, choose one at random.(10pts)?
+	\end{enumerate}
+	
+\item We decided that maybe we can use the number of characters and the average word length an essay to determine if the student should get an $A$ in a class or not.  Below are five samples of this data:
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\# of Chars & Average Word Length & Give an A\\
+\hline
+216 & 5.68 & Yes\\
+69 & 4.78 & Yes\\
+302 & 2.31 & No \\
+60 & 3.16 & Yes \\
+393 & 4.2 & No\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+	\begin{enumerate}
+	\item What are the class priors, $P(A=Yes), P(A=No)$? (5pts)
+	\item Find the parameters of the Gaussians necessary to do Gaussian Naive Bayes classification on this decision to give an A or not.  Standardize the features first over all the data together so that there is no unfair bias towards the features of different scales (5pts).
+	\item Using your response from the prior question, determine if an essay with 242 characters and an average word length of 4.56 should get an A or not.  Show the math to support your decision (10pts).
+	\end{enumerate}
+\end{enumerate}
+
+\newpage
+\section{Naive Bayes Classifier}\label{naive}
+For your first programming task, you'll implement, train and test a \emph{Naive Bayes Classifier}.\\
+
+\noindent
+Download the dataset \emph{spambase.data} from Blackboard.  As mentioned in the Datasets area, this dataset contains 4601 rows of data, each with 57 continuous valued features followed by a binary class label (0=not-spam, 1=spam).  \textbf{Since the features are continuous, we'll use Gaussians to model $P(x_i|y)$}. There is no header information in this file and the data is comma separated.  As always, your code should work on any dataset that lacks header information and has several comma-separated continuous-valued features followed by a class id $\in {0,1}$.\\
+
+\noindent
+\paragraph{Write a script that:}
+\begin{enumerate}
+  \item Reads in the data.
+  \item Randomizes the data.
+  \item Selects the first 2/3 (round up) of the data for training and the remaining for testing
+  \item Standardizes the data (except for the last column of course) using the training data
+  \item Divides the training data into two groups: Spam samples, Non-Spam samples.
+  \item Creates Gaussian models for each feature for each class.
+  \item Classify each testing sample using these models and choosing the class label based on which class probability is higher.
+  \item Computes the following statistics using the testing data results:
+    \begin{enumerate}
+        \item Precision
+        \item Recall
+        \item F-measure
+        \item Accuracy (expect around 80\%)
+    \end{enumerate}
+\end{enumerate}
+
+
+\paragraph{Implementation Details}
+\begin{enumerate}
+\item Seed the random number generate with zero prior to randomizing the data
+\item You may want to consider using the log-exponent trick to avoid underflow issues.  Here's a link about it:  https://stats.stackexchange.com/questions/105602/example-of-how-the-log-sum-exp-trick-works-in-naive-bayes
+\item You also may want to consider removing features with a low standard deviation.  They provide little information and can result in extreme spikes in your computation.
+\end{enumerate}
+
+
+\newpage
+\section{Logistic Regression}\label{naive}
+Finally, lets design, implement, train and test a \emph{Logistic Regression Classifier}.  For training and testing, we'll use the same dataset as in the previous programming part, and as always, your code should work on any dataset that lacks header information and has several comma-separated continuous-valued features followed by a class id $\in {0,1}$.\\
+
+\noindent
+\paragraph{Write a script that:}
+\begin{enumerate}
+  \item Reads in the data.
+  \item Randomizes the data.
+  \item Selects the first 2/3 (round up) of the data for training and the remaining for testing
+  \item Standardizes the data (except for the last column of course) using the training data
+  \item Trains a logistic classifier.
+  \item Classify each testing sample using your trained model, choosing an observation to be spam if the output of the model is $\geq 50\%$.  
+  \item Compute the following statistics using the testing data results:
+    \begin{enumerate}
+        \item Precision
+        \item Recall
+        \item F-measure
+        \item Accuracy (expect around 90\%)
+    \end{enumerate}
+\end{enumerate}
+
+
+\paragraph{Implementation Details}
+\begin{enumerate}
+\item Seed the random number generate with zero prior to randomizing the data
+\item We will let you determine appropriate values for the learning rate, $\eta$, the initial parameter values, as well as an appropriate termination criteria. 
+\end{enumerate}
+
+
+\paragraph{In your report you will need:}
+\begin{enumerate}
+\item The statistics requested for your Logistic Classifier.
+\end{enumerate}
+
+
+\newpage
+\section*{Submission}
+For your submission, upload to Blackboard a single zip file (again no spaces or non-underscore special characters in file or directory names) containing:
+
+\begin{enumerate}
+\item PDF Writeup
+\item Source Code
+\item readme.txt file
+\end{enumerate}
+
+\noindent
+The readme.txt file should contain information on how to run your code to reproduce results for each part of the assignment.\\
+
+\noindent
+The PDF document should contain the following:
+
+\begin{enumerate}
+\item Part 1:
+	\begin{enumerate}
+	\item Answers to theory questions
+	\end{enumerate}
+\item Part 2:
+	\begin{enumerate}
+	\item Requested Classification Statistics
+	\end{enumerate}
+\item Part 3:
+	\begin{enumerate}
+	\item Requested Classification Statistics
+\end{enumerate}
+\end{enumerate}
+\end{document}
+
