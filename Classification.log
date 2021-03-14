@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.1)  14 MAR 2021 14:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.1)  14 MAR 2021 16:29
 entering extended mode
 **./Classification.tex
 (Classification.tex
@@ -388,37 +388,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 162--163
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 164--166
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
 
 [2 <./images//d_tree_01.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--186
+Underfull \hbox (badness 10000) in paragraph at lines 187--191
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--202
+Underfull \hbox (badness 10000) in paragraph at lines 203--207
 
  []
 
 [3] (Classification.aux) ) 
 Here is how much of TeX's memory you used:
- 4496 strings out of 479618
- 62922 string characters out of 2871127
+ 4500 strings out of 479618
+ 62967 string characters out of 2871127
  368239 words of memory out of 3000000
- 21637 multiletter control sequences out of 15000+200000
- 410157 words of font info for 50 fonts, out of 3000000 for 9000
+ 21640 multiletter control sequences out of 15000+200000
+ 410633 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,17n,74p,233b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
 <D:/Desktop/Program Files/MiKTeX/fonts/type1/public/a
@@ -427,10 +437,11 @@ nts/cm/cmmi12.pfb><D:/Desktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmr12.pfb><D:/Desktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 r17.pfb><D:/Desktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pf
 b><D:/Desktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D
-:/Desktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Classification.pdf (3 pages, 117605 bytes).
+:/Desktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><D:/De
+sktop/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Classification.pdf (3 pages, 124421 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
+ 45 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
